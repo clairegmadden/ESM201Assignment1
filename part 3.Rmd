@@ -1,0 +1,111 @@
+---
+title: "Assignment 1 part 3"
+author: "Claire Madden"
+date: "2/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(stargazer)
+
+data <- read_csv("assig1_data.csv") %>% 
+  mutate(popmil = population/1000000)
+
+
+```
+
+
+```{r 3a}
+
+allcountrymodel <- data %>% 
+  lm(dNNdt ~ country + years_ed + calories_pd, data = .)
+
+summary(allcountrymodel)
+
+# country reference = brazil
+# years of education and calories are both significant (p < 0.001)
+
+
+# for a 1 percent increase in education, we would expect overall for all five countries, the per capita rate of change of the population to decrease by 0.0027 percent
+
+# for a 1 percent increase in calories per day, we would expect the per capita rate of change of the population to decrease by 0.0000015 percent
+
+
+```
+
+
+
+```{r 3b}
+
+brazil_model <- data %>%
+  filter(country == "Brazil") %>% 
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
+
+
+summary(brazil_model)
+
+
+# for a 1 year increase in education, we would expect a decrease in per capita rate of population change of 0.0024 percent, if all other variables remain constant
+
+# for a 1 unit increase in calories consumed, we would expect a decrease in the per capita rate of population change of 0.00000115, if all other variables remain constant
+
+india_model <- data %>%
+  filter(country == "India") %>% 
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
+
+summary(india_model)
+
+# for a 1 year increase in education, we would expect a decrease in per capita rate of population change of 0.0015 percent, if all other variables remain constant
+
+# for a 1 unit increase in calories consumed, we would expect a decrease in the per capita rate of population change of 0.0000004, if all other variables remain constant
+
+
+japan_model <- data %>%
+  filter(country == "Japan") %>% 
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
+
+summary(japan_model)
+
+
+# for a 1 year increase in education, we would expect a decrease in per capita rate of population change of 0.0038 percent, if all other variables remain constant
+
+# for a 1 unit increase in calories consumed, we would expect a decrease in the per capita rate of population change of 0.000002, if all other variables remain constant
+
+
+
+
+mexico_model <- data %>%
+  filter(country == "Mexico") %>% 
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
+
+summary(mexico_model)
+
+
+# for a 1 year increase in education, we would expect a decrease in per capita rate of population change of 0.0023 percent, if all other variables remain constant
+
+# for a 1 unit increase in calories consumed, we would expect a decrease in the per capita rate of population change of 0.0000053, if all other variables remain constant
+
+
+korea_model <- data %>%
+  filter(country == "South Korea") %>% 
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
+
+summary(korea_model)
+
+
+# for a 1 year increase in education, we would expect a decrease in per capita rate of population change of 0.0028 percent, if all other variables remain constant
+
+# for a 1 unit increase in calories consumed, we would expect a decrease in the per capita rate of population change of 0.0000004, if all other variables remain constant
+
+```
+
+
