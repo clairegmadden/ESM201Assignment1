@@ -47,7 +47,11 @@ summary(allcountrymodel)
 combined_table <- stargazer(allcountrymodel,
                       title = "Table 2. Multiple Linear Regression",
                       dep.var.labels = c("Per Capita Rate of Change (dN/Ndt)"),
-                      covariate.labels = c("Years of Education",
+                      covariate.labels = c("India",
+                                           "Japan",
+                                           "Mexico",
+                                           "South Korea",
+                                           "Years of Education",
                                            "Calories Per Day Per Person"),
                       digits = 5,
                       type = "html")
