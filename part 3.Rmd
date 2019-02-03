@@ -17,9 +17,7 @@ library(kableExtra)
 library(knitr)
 library(stargazer)
 
-data <- read_csv("assig1_data.csv") %>% 
-  mutate(popmil = population/1000000)
-
+data <- read_csv("assig1_data.csv")
 
 ```
 
@@ -108,4 +106,20 @@ summary(korea_model)
 
 ```
 
+
+
+```{r 3tables}
+
+lm_table <- stargazer(brazil_model, india_model, japan_model, mexico_model, korea_model,
+                      title = "Multiple Linear Regression by Country",
+                      dep.var.labels = c("Per Capita Rate of Change (dN/Ndt)"),
+                      column.labels = c("Brazil", "India", "Japan", "Mexico", "South Korea"),
+                      covariate.labels = c("Years of Education",
+                                           "Calories Per Day Per Person"),
+                      digits = 5,
+                      type = "html")
+
+
+
+```
 
