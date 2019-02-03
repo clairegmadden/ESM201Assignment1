@@ -38,6 +38,20 @@ summary(allcountrymodel)
 # for a 1 percent increase in calories per day, we would expect the per capita rate of change of the population to decrease by 0.0000015 percent
 
 
+
+
+```
+
+```{r}
+
+model_table <- stargazer(allcountrymodel,
+                      title = "Multiple Linear Regression",
+                      dep.var.labels = c("Per Capita Rate of Change (dN/Ndt)"),
+                      covariate.labels = c("Years of Education",
+                                           "Calories Per Day Per Person"),
+                      digits = 5,
+                      type = "html")
+
 ```
 
 
