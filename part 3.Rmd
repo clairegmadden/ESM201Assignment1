@@ -42,7 +42,7 @@ summary(allcountrymodel)
 
 ```
 
-```{r}
+```{r, results='asis'}
 
 combined_table <- stargazer(allcountrymodel,
                       title = "Table 2. Multiple Linear Regression",
