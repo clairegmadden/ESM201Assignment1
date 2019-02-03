@@ -1,0 +1,56 @@
+---
+title: "Part 3 a"
+author: "Claire Madden"
+date: "2/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(stargazer)
+
+data <- read_csv("assig1_data.csv")
+
+```
+
+
+```{r 3a}
+
+allcountrymodel <- data %>% 
+  lm(dNNdt ~ country + years_ed + calories_pd, data = .)
+
+summary(allcountrymodel)
+
+# country reference = brazil
+# years of education and calories are both significant (p < 0.001)
+
+
+# for a 1 percent increase in education, we would expect overall for all five countries, the per capita rate of change of the population to decrease by 0.0027 percent
+
+# for a 1 percent increase in calories per day, we would expect the per capita rate of change of the population to decrease by 0.0000015 percent
+
+
+
+
+```
+
+
+```{r}
+
+model_table <- stargazer(allcountrymodel,
+                      title = "Multiple Linear Regression",
+                      dep.var.labels = c("Per Capita Rate of Change (dN/Ndt)"),
+                      covariate.labels = c("Years of Education",
+                                           "Calories Per Day Per Person"),
+                      digits = 5,
+                      type = "html")
+
+```
