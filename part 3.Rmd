@@ -108,7 +108,7 @@ summary(korea_model)
 
 
 
-```{r 3tables}
+```{r 3tables, results = 'asis'}
 
 lm_table <- stargazer(brazil_model, india_model, japan_model, mexico_model, korea_model,
                       title = "Multiple Linear Regression by Country",
