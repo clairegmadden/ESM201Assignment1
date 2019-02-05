@@ -25,7 +25,7 @@ data <- read_csv("assig1_data.csv")
 ```{r 3a}
 
 allcountrymodel <- data %>% 
-  lm(dNNdt ~ country + years_ed + calories_pd, data = .)
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
 
 summary(allcountrymodel)
 
@@ -47,11 +47,7 @@ summary(allcountrymodel)
 combined_table <- stargazer(allcountrymodel,
                       title = "Table 2. Multiple Linear Regression",
                       dep.var.labels = c("Per Capita Rate of Change (dN/Ndt)"),
-                      covariate.labels = c("India",
-                                           "Japan",
-                                           "Mexico",
-                                           "South Korea",
-                                           "Years of Education",
+                      covariate.labels = c("Years of Education",
                                            "Calories Per Day Per Person"),
                       digits = 5,
                       type = "html")

@@ -156,33 +156,29 @@ library(stargazer)</code></pre>
 ##   brazil_dNNdt = col_double()
 ## )</code></pre>
 <pre class="r"><code>allcountrymodel &lt;- data %&gt;% 
-  lm(dNNdt ~ country + years_ed + calories_pd, data = .)
+  lm(dNNdt ~ years_ed + calories_pd, data = .)
 
 summary(allcountrymodel)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = dNNdt ~ country + years_ed + calories_pd, data = .)
+## lm(formula = dNNdt ~ years_ed + calories_pd, data = .)
 ## 
 ## Residuals:
 ##        Min         1Q     Median         3Q        Max 
-## -0.0041742 -0.0013346  0.0000841  0.0012794  0.0039155 
+## -0.0065808 -0.0027706 -0.0006662  0.0026503  0.0091749 
 ## 
 ## Coefficients:
-##                      Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         3.919e-02  1.663e-03  23.567  &lt; 2e-16 ***
-## countryIndia       -7.363e-03  1.089e-03  -6.764 1.48e-10 ***
-## countryJapan       -1.438e-03  1.585e-03  -0.907   0.3656    
-## countryMexico       4.370e-03  7.447e-04   5.868 1.83e-08 ***
-## countrySouth Korea  2.597e-03  1.444e-03   1.799   0.0736 .  
-## years_ed           -2.671e-03  1.553e-04 -17.194  &lt; 2e-16 ***
-## calories_pd        -1.486e-06  3.694e-07  -4.022 8.20e-05 ***
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.975e-02  9.831e-04   30.26   &lt;2e-16 ***
+## years_ed    -2.249e-03  8.709e-05  -25.82   &lt;2e-16 ***
+## calories_pd  1.292e-07  2.154e-07    0.60    0.549    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.001761 on 198 degrees of freedom
+## Residual standard error: 0.003665 on 202 degrees of freedom
 ##   (5 observations deleted due to missingness)
-## Multiple R-squared:  0.948,  Adjusted R-squared:  0.9464 
-## F-statistic: 601.3 on 6 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Multiple R-squared:  0.7703, Adjusted R-squared:  0.768 
+## F-statistic: 338.7 on 2 and 202 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code># country reference = brazil
 # years of education and calories are both significant (p &lt; 0.001)
 
@@ -193,11 +189,7 @@ summary(allcountrymodel)</code></pre>
 <pre class="r"><code>combined_table &lt;- stargazer(allcountrymodel,
                       title = &quot;Table 2. Multiple Linear Regression&quot;,
                       dep.var.labels = c(&quot;Per Capita Rate of Change (dN/Ndt)&quot;),
-                      covariate.labels = c(&quot;India&quot;,
-                                           &quot;Japan&quot;,
-                                           &quot;Mexico&quot;,
-                                           &quot;South Korea&quot;,
-                                           &quot;Years of Education&quot;,
+                      covariate.labels = c(&quot;Years of Education&quot;,
                                            &quot;Calories Per Day Per Person&quot;),
                       digits = 5,
                       type = &quot;html&quot;)</code></pre>
@@ -235,101 +227,17 @@ Per Capita Rate of Change (dN/Ndt)
 </tr>
 <tr>
 <td style="text-align:left">
-India
-</td>
-<td>
--0.00736<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.00109)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Japan
-</td>
-<td>
--0.00144
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.00159)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Mexico
-</td>
-<td>
-0.00437<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.00074)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-South Korea
-</td>
-<td>
-0.00260<sup>*</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.00144)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
 Years of Education
 </td>
 <td>
--0.00267<sup>***</sup>
+-0.00225<sup>***</sup>
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
 <td>
-(0.00016)
+(0.00009)
 </td>
 </tr>
 <tr>
@@ -343,14 +251,14 @@ Years of Education
 Calories Per Day Per Person
 </td>
 <td>
--0.000001<sup>***</sup>
+0.0000001
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
 <td>
-(0.0000004)
+(0.0000002)
 </td>
 </tr>
 <tr>
@@ -364,14 +272,14 @@ Calories Per Day Per Person
 Constant
 </td>
 <td>
-0.03919<sup>***</sup>
+0.02975<sup>***</sup>
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
 <td>
-(0.00166)
+(0.00098)
 </td>
 </tr>
 <tr>
@@ -397,7 +305,7 @@ Observations
 R<sup>2</sup>
 </td>
 <td>
-0.94798
+0.77028
 </td>
 </tr>
 <tr>
@@ -405,7 +313,7 @@ R<sup>2</sup>
 Adjusted R<sup>2</sup>
 </td>
 <td>
-0.94640
+0.76801
 </td>
 </tr>
 <tr>
@@ -413,7 +321,7 @@ Adjusted R<sup>2</sup>
 Residual Std. Error
 </td>
 <td>
-0.00176 (df = 198)
+0.00366 (df = 202)
 </td>
 </tr>
 <tr>
@@ -421,7 +329,7 @@ Residual Std. Error
 F Statistic
 </td>
 <td>
-601.33510<sup>***</sup> (df = 6; 198)
+338.67070<sup>***</sup> (df = 2; 202)
 </td>
 </tr>
 <tr>
